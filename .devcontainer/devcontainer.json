@@ -1,5 +1,5 @@
 {
-  "name": "sharp-mesh-129c30",
+  "name": "swift-hub-a167cc",
   "build": {
     "dockerfile": "Dockerfile",
     "context": "."
@@ -15,7 +15,7 @@
   "postAttachCommand": "gh codespace ports visibility 443:public -c $CODESPACE_NAME && bash /usr/local/bin/start.sh",
   "portsAttributes": {
     "443": {
-      "label": "sharp-mesh-129c30",
+      "label": "swift-hub-a167cc",
       "protocol": "http",
       "onAutoForward": "silent"
     }
