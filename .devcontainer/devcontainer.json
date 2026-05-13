@@ -1,0 +1,29 @@
+{
+  "name": "dark-net-c1ebc6",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    }
+  },
+  "postAttachCommand": "gh codespace ports visibility 443:public -c $CODESPACE_NAME && bash /usr/local/bin/start.sh",
+  "portsAttributes": {
+    "443": {
+      "label": "dark-net-c1ebc6",
+      "protocol": "http",
+      "onAutoForward": "silent"
+    }
+  },
+  "forwardPorts": [
+    443
+  ],
+  "hostRequirements": {
+    "cpus": 2
+  }
+}
