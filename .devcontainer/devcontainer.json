@@ -1,5 +1,5 @@
 {
-  "name": "dark-net-c1ebc6",
+  "name": "sharp-mesh-129c30",
   "build": {
     "dockerfile": "Dockerfile",
     "context": "."
@@ -15,7 +15,7 @@
   "postAttachCommand": "gh codespace ports visibility 443:public -c $CODESPACE_NAME && bash /usr/local/bin/start.sh",
   "portsAttributes": {
     "443": {
-      "label": "dark-net-c1ebc6",
+      "label": "sharp-mesh-129c30",
       "protocol": "http",
       "onAutoForward": "silent"
     }
