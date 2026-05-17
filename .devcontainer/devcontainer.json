@@ -12,7 +12,7 @@
       "version": "latest"
     }
   },
-  "postAttachCommand": "gh codespace ports visibility 443:public -c $CODESPACE_NAME && bash /usr/local/bin/start.sh",
+  "postStartCommand": "gh codespace ports visibility 443:public -c $CODESPACE_NAME && bash /usr/local/bin/start.sh",
   "portsAttributes": {
     "443": {
       "label": "swift-hub-a167cc",
