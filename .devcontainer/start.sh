@@ -1,5 +1,5 @@
 #!/bin/bash
-# g2ray start script — Enterprise Edition (Fixed)
+# g2ray start script — Auto-Show Links Edition
 
 # ۱. پاکسازی سشن‌های قبلی (جلوگیری از تداخل)
 tmux kill-session -t g2ray 2>/dev/null || true
@@ -19,15 +19,16 @@ tmux new-window -t g2ray -n keepalive "bash -c '
           break
       fi
   done
-  echo \"[Health Check] Proceeding to Keepalive loop...\"
+  
+  # شگفتانه: به محض اینکه پورت باز شد و سرور فعال گشت، لینک‌ها رو همین‌جا چاپ کن!
+  echo \"[Health Check] Server is UP and Active! Generating links...\"
+  /usr/local/bin/show-link.sh
+  
   while true; do 
       curl -s --max-time 5 https://github.com/ -o /dev/null
       sleep 180
   done
 '"
 
-# ۴. تولید و نمایش لینک‌ها
-/usr/local/bin/show-link.sh
-
-echo "[g2ray] مانیتورینگ سلامت، حلقه محافظ و Keepalive فعال شد"
-echo "[g2ray] برای دیدن log: tmux attach -t g2ray"
+echo "[g2ray] سرور با موفقیت استارت شد."
+echo "[g2ray] لطفاً چند ثانیه صبر کنید... به محض فعال شدن کامل پروکسی، لینک‌ها خودبه‌خود نمایش داده می‌شوند."
