@@ -14,4 +14,3 @@ RUN apt-get update \
     && chmod +x /usr/local/bin/show-link.sh \
     && chmod +x /usr/local/bin/start.sh
 EXPOSE 443
-CMD ["/usr/local/bin/xray","run","-c","/etc/xray/g2ray.json"]
