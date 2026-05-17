@@ -1,13 +1,13 @@
 #!/bin/bash
 CONFIG="/etc/xray/g2ray.json"
 UUID=$(grep -o '"id": *"[^"]*"' "$CONFIG" | head -1 | grep -o '"[^"]*"$' | tr -d '"')
-if [ -z "$UUID" ]; then echo "[g2ray] UUID پیدا نشد."; exit 1; fi
+if [ -z "$UUID" ]; then echo "[g2ray] UUID not found."; exit 1; fi
 SNI="${CODESPACE_NAME}-443.app.github.dev"
 IPS=("94.130.50.12" "50.7.5.83" "63.141.252.203")
 
-# بررسی وضعیت واقعی سرور (تله‌شکن و صحت‌سنجی واقعی)
+# Check actual server status (Fail-safe and real verification)
 if [ ! -f /tmp/server_ready ]; then
-    echo -n "⏳ [g2ray] در حال راه‌اندازی هسته و تست پایداری شبکه... لطفاً شکیبا باشید"
+    echo -n "⏳ [g2ray] Starting core and testing network stability... Please wait"
     TIMEOUT=40
     while [ ! -f /tmp/server_ready ] && [ $TIMEOUT -gt 0 ]; do
         sleep 1
@@ -17,16 +17,16 @@ if [ ! -f /tmp/server_ready ]; then
     echo ""
     
     if [ $TIMEOUT -le 0 ]; then
-        echo "❌ [خطا] زمان انتظار به پایان رسید! سرور یا پورت ۴۴۳ به طور کامل فعال نشد."
-        echo "🔍 برای بررسی علت خطا دستور مقابل را بزنید: tmux attach -t g2ray"
+        echo "❌ [Error] Timeout reached! Server or port 443 did not fully activate."
+        echo "🔍 To investigate the error, run: tmux attach -t g2ray"
         exit 1
     fi
 fi
 
-# چاپ لینک‌ها پس از اطمینان از زنده بودن و روان بودن مطلق سرور
+# Print links after ensuring the server is absolutely alive and smooth
 echo ""
 echo "====================================================="
-echo "   ✅ سرور کاملاً فعال، روان و آماده اتصال است!      "
+echo " ✅ Server is fully active, smooth, and ready!       "
 echo "====================================================="
 
 for IP in "${IPS[@]}"; do
