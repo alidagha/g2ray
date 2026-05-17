@@ -13,7 +13,7 @@ if [ ! -f /tmp/server_ready ]; then
         sleep 1
         ((TIMEOUT--))
         echo -n "."
-    fi
+    done
     echo ""
     
     if [ $TIMEOUT -le 0 ]; then
